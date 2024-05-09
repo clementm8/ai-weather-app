@@ -1,5 +1,5 @@
 # javascript-ai-app
-A Javascript AI application built with React and the OpenAI API
+A Javascript AI application built with React and leveraging the OpenAI API
 The application will:
 - Accept text from users
 - Determine their location using open AI's API
