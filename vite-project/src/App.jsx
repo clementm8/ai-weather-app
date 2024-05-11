@@ -57,8 +57,8 @@ function App() {
         <WeatherForm onSubmit={handleSubmit} />
         {error && <p className="error">{errorMsg.message}</p>}
         {weatherDescription ? (
-          <Description isLoading={weatherDataLoading}
-           weatherDescription={JSON.stringify(weatherDescription)} />
+          <Description isLoading={weatherDescriptLoading}
+            weatherDescription={weatherDescription} />
         ) : (
           <Description isLoading={weatherDataLoading} />
         )}
