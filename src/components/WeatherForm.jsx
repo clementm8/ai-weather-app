@@ -23,7 +23,7 @@ function WeatherForm({ onSubmit }) {
         <input type="submit" value="Submit" />
       </div>
       <p className="instructions">
-        Please provide at least a city for accurate results;
+        Please provide at least a city for accurate results
         <br />
         For Example: whats the weather like in Edmonton?
       </p>
