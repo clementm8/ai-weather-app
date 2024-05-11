@@ -13,7 +13,7 @@ function WeatherForm({ onSubmit }) {
   return (
     <form className="locationform" onSubmit={handleSubmit}>
       <div className="locationform__elements">
-        <label htmlFor="location"></label>
+        <label htmlFor="location">Ask me what the current weather is anywhere:</label>
         <input
           id="location"
           type="text"
