@@ -13,7 +13,7 @@ function WeatherForm({ onSubmit }) {
   return (
     <form className="locationform" onSubmit={handleSubmit}>
       <div className="locationform__elements">
-        <label htmlFor="location">Ask me what the current weather is anywhere:</label>
+        <label htmlFor="location">Ask me what the weather is currently like anywhere:</label>
         <input
           id="location"
           type="text"
@@ -24,9 +24,7 @@ function WeatherForm({ onSubmit }) {
         <input type="submit" value="Submit" />
       </div>
       <p className="instructions">
-        For USA, enter &quot;city,two-letter state code,US&quot; eg
-        &quot;Oskaloosa,IA,US&quot;. For every other country, enter
-        &quot;city,two-letter country code&quot; eg. &quot;Lillehammer,NO&quot;.
+        Please provide at least a city for accurate results;.
       </p>
     </form>
   );
