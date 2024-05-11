@@ -13,13 +13,13 @@ function WeatherForm({ onSubmit }) {
   return (
     <form className="locationform" onSubmit={handleSubmit}>
       <div className="locationform__elements">
-        <label htmlFor="location">Enter location:</label>
+        <label htmlFor="location"></label>
         <input
           id="location"
           type="text"
           value={inputLocation}
           onChange={(e) => setInputLocation(e.target.value)}
-          placeholder="City,state code (if USA),country code"
+          placeholder="Whats the weather like in Edmonton?"
         />
         <input type="submit" value="Submit" />
       </div>
