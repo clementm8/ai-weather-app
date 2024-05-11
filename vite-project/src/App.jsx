@@ -11,7 +11,7 @@ function App() {
   const [errorMsg, setErrorMsg] = useState("");
 
   // Custom hook to handle API requests. Fires when prompt changes.
-  const { error, locationData, weatherData } = useApiRequests(prompt);
+  const { error, promptData, locationData, weatherData } = useApiRequests(prompt);
 
   // Set error message if error is returned from API request.
   useEffect(() => {
@@ -48,7 +48,7 @@ function App() {
             isLoading={weatherDataLoading}
             data={weatherData}
             units={units}
-            country={locationData[0].country}
+            country={promptData.country}
             USstate={locationData[0].state}
             setUnits={setUnits}
           />
