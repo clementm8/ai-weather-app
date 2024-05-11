@@ -3,6 +3,7 @@ import "./App.css";
 import useApiRequests from "./components/useApiRequests";
 import WeatherForm from "./components/WeatherForm";
 import WeatherCard from "./components/WeatherCard";
+import Description from "./components/Description";
 
 function App() {
   const [prompt, setPrompt] = useState("");
@@ -11,7 +12,7 @@ function App() {
   const [errorMsg, setErrorMsg] = useState("");
 
   // Custom hook to handle API requests. Fires when prompt changes.
-  const { error, promptData, locationData, weatherData } = useApiRequests(prompt);
+  const { error, promptData, locationData, weatherData, weatherDescription } = useApiRequests(prompt);
 
   // Set error message if error is returned from API request.
   useEffect(() => {
@@ -47,6 +48,11 @@ function App() {
         <h1 className="page-title">Current Weather</h1>
         <WeatherForm onSubmit={handleSubmit} />
         {error && <p className="error">{errorMsg.message}</p>}
+        {weatherDescription ? (
+          <Description weatherDescription={JSON.stringify(weatherDescription)} />
+        ) : (
+          <Description />
+        )}
       </header>
       <main className="main-content">
         {weatherData.name && !errorMsg ? (
