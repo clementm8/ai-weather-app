@@ -25,6 +25,7 @@ const useApiRequests = (prompt) => {
 
         const weatherDataRes = await WeatherData(locationDataRes);
         setWeatherData(weatherDataRes);
+        console.log(weatherDataRes)
       } catch (error) {
         setError(error);
         console.error("Error:", error);

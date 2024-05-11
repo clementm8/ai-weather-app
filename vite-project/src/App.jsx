@@ -19,7 +19,13 @@ function App() {
       setErrorMsg(error);
       setWeatherDataLoading(false);
     }
-  }, [error]);
+  }, [weatherData]);
+
+  useEffect(() => {
+    if (promptData && promptData.units){
+      setUnits(promptData.units);
+    }
+  }, [promptData])
 
   // Set weatherDataLoading to false when weatherData is returned from API request.
   useEffect(() => {
