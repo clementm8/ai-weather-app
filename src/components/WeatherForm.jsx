@@ -19,12 +19,13 @@ function WeatherForm({ onSubmit }) {
           type="text"
           value={inputLocation}
           onChange={(e) => setInputLocation(e.target.value)}
-          placeholder="Whats the weather like in Edmonton?"
         />
         <input type="submit" value="Submit" />
       </div>
       <p className="instructions">
-        Please provide at least a city for accurate results;.
+        Please provide at least a city for accurate results;
+        <br />
+        For Example: whats the weather like in Edmonton?
       </p>
     </form>
   );
