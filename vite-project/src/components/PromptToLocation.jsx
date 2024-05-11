@@ -69,11 +69,17 @@ const PromptToLocation = async (prompt) => {
       if (promptRes.countryCode === "US") {
         return `${promptRes.country}, ${promptRes.state}, ${promptRes.city}`;
       } else {
-        return `${promptRes.country}, ${promptRes.city}`;
+        return `${promptRes.city}, ${promptRes.country}`;
       }
     }
-    console.log(locationString())
-    return data;
+    const promptData= {
+      locationString: locationString(),
+      units: promptRes.unit,
+      country: promptRes.country,
+      USstate: promptRes.state,
+    }
+    console.log(promptData)
+    return promptData;
   } catch (error) {
     console.log("Error:", error);
     throw new Error(
