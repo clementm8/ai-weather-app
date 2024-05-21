@@ -1,5 +1,5 @@
 # javascript-ai-app
-A Javascript AI application built with React that leverages the OpenAI API and [openweathermap](https://openweathermap.org/) API to provide conversational text responses of the current weather in a location
+An AI weather application built with Javascript and React. It leverages the OpenAI API and [openweathermap](https://openweathermap.org/) API to provide conversational text responses of the current weather in a location
 
 Functionality:
 - Accept text from users
