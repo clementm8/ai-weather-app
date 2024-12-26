@@ -4,7 +4,7 @@ const PromptToLocation = async (prompt) => {
   const url = `https://api.openai.com/v1/chat/completions`;
 
   const data = {
-    model: "gpt-3.5-turbo-0613",
+    model: "gpt-4o-mini",
     messages: [{ role: "user", content: prompt }],
     functions: [
       {
@@ -64,7 +64,6 @@ const PromptToLocation = async (prompt) => {
     const response = await fetch(url, params);
     const data = await response.json();
     const promptRes= JSON.parse(data.choices[0].message.function_call.arguments);
-    console.log(promptRes)
     const locationString= () =>{
       if (promptRes.countryCode === "US") {
         return `${promptRes.city}, ${promptRes.state}, ${promptRes.country}`;
@@ -79,14 +78,14 @@ const PromptToLocation = async (prompt) => {
       USstate: promptRes.state,
       country: promptRes.country,
     }
-    console.log(promptData)
-    console.log(locationString())
+    console.log(promptRes)
     return promptData;
   } catch (error) {
     console.log("Error:", error);
     throw new Error(
       "Unable to identify a location from your question. Please try again."
     );
+    
   }
 };
 

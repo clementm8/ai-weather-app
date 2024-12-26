@@ -52,8 +52,9 @@ function App() {
 
   return (
     <div className="container">
+      <h1 className="title">AI Weather App</h1>
       <header className="header">
-        <h1 className="page-title">Current Weather</h1>
+        <h2 className="page-subtitle">Current Weather</h2>
         <WeatherForm onSubmit={handleSubmit} />
         {error && <p className="error">{errorMsg.message}</p>}
         {weatherDescription ? (

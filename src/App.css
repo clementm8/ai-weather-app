@@ -5,8 +5,8 @@
 .container {
   width: 100%;
   height: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 4rem;
 }
 
@@ -14,20 +14,27 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 45%;
   height: 100%;
   padding: 2rem;
   border-radius: 1rem;
   background: hsl(0, 0%, 95%);
 }
 
-.page-title {
+.page-subtitle {
   font-size: 4rem;
   font-weight: 100;
   margin: 1rem 0 2rem;
   text-align: center;
 }
 
+.title{
+  height: fit-content;
+  text-align: center;
+  margin: auto;
+  flex-basis: 100%;
+}
+
 .main-content {
-  width: 100%;
+  width: 45%;
 }
