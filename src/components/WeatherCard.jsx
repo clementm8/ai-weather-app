@@ -50,9 +50,21 @@ const speedTranslator = (speed, units) => {
 
 const WeatherCard = ({
   isLoading,
-  data,
-  units,
-  country,
+  data = { // Default for the entire data object
+    name: "--",
+    sys: {
+      country: "--",
+    },
+    main: {
+      temp: 273,
+    },
+    wind: {
+      speed: 0,
+      deg: 0,
+    },
+  },
+  units="metric",
+  country= "--",
   USstate,
   setUnits,
 }) => {
@@ -117,24 +129,6 @@ const WeatherCard = ({
   );
 };
 
-// default props
-WeatherCard.defaultProps = {
-  data: {
-    name: "--",
-    sys: {
-      country: "--",
-    },
-    main: {
-      temp: 273,
-    },
-    wind: {
-      speed: 0,
-      deg: 0,
-    },
-  },
-  units: "metric",
-  setUnits: () => {},
-};
 
 // props validation
 WeatherCard.propTypes = {

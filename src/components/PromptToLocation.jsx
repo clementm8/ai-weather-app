@@ -4,7 +4,7 @@ const PromptToLocation = async (prompt) => {
   const url = `https://api.openai.com/v1/chat/completions`;
 
   const data = {
-    model: "gpt-4o-mini",
+    model: "gpt-3.5-turbo",
     messages: [{ role: "user", content: prompt }],
     functions: [
       {

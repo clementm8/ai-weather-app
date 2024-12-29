@@ -12,7 +12,7 @@ const WeatherDescript = async (prompt, WeatherData) => {
 
 const newPrompt= `Question: ${prompt}, Weather Data: ${JSON.stringify(WeatherData)}`
   const data = {
-    model: "gpt-3.5-turbo-0613",
+    model: "gpt-3.5-turbo",
     messages: [
         { role: "system", content: sysMsg },
         { role: "user", content: newPrompt }],
