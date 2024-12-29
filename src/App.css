@@ -8,6 +8,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 4rem;
+  margin: auto;
 }
 
 .header {
@@ -37,4 +38,10 @@
 
 .main-content {
   width: 45%;
+}
+
+@media (max-width: 784px) { 
+  .header, .main-content{  
+    width: 100%;
+  }
 }
