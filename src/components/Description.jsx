@@ -17,7 +17,11 @@ const descriptionText = typeof weatherDescription === 'object' ? 'Waiting for lo
 
 
 Description.propTypes = {
-  weatherDescription: PropTypes.object,
+  weatherDescription: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ]),
+  isLoading: PropTypes.bool,
 };
 
 export default Description;

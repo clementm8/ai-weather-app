@@ -26,6 +26,10 @@ function WeatherForm({ onSubmit }) {
         Please provide at least a city for accurate results
         <br />
         For Example: whats the weather like in Edmonton?
+        <br />
+        <span className="rate-limit-note">
+          Note: API calls are rate-limited. If you get an error, please wait a moment and try again.
+        </span>
       </p>
     </form>
   );

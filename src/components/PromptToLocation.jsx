@@ -2,9 +2,12 @@ import PropTypes from "prop-types";
 
 const PromptToLocation = async (prompt) => {
   const url = `https://api.openai.com/v1/chat/completions`;
+  const model = "gpt-3.5-turbo-16k";
+  
+  console.log(`🔍 Making location request with model: ${model}`);
 
   const data = {
-    model: "gpt-3.5-turbo",
+    model: model,
     messages: [{ role: "user", content: prompt }],
     functions: [
       {
@@ -62,7 +65,29 @@ const PromptToLocation = async (prompt) => {
 
   try {
     const response = await fetch(url, params);
+    
+    // Check for rate limiting
+    if (response.status === 429) {
+      const error = new Error('Rate limit exceeded');
+      error.status = 429;
+      throw error;
+    }
+    
+    // Check for other HTTP errors
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      const error = new Error(errorData.error?.message || `HTTP ${response.status}: ${response.statusText}`);
+      error.status = response.status;
+      throw error;
+    }
+    
     const data = await response.json();
+    
+    // Check if the response has the expected structure
+    if (!data.choices || !data.choices[0] || !data.choices[0].message || !data.choices[0].message.function_call) {
+      throw new Error('Invalid response format from OpenAI API');
+    }
+    
     const promptRes= JSON.parse(data.choices[0].message.function_call.arguments);
     const locationString= () =>{
       if (promptRes.countryCode === "US") {
@@ -82,13 +107,17 @@ const PromptToLocation = async (prompt) => {
     return promptData;
   } catch (error) {
     console.log("Error:", error);
+    
+    // Re-throw rate limit errors so they can be handled by the retry logic
+    if (error.status === 429) {
+      throw error;
+    }
+    
     throw new Error(
       "Unable to identify a location from your question. Please try again."
     );
-    
   }
 };
-
 
 PromptToLocation.propTypes = {
   prompt: PropTypes.string.isRequired,

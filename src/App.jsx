@@ -8,20 +8,19 @@ import Description from "./components/Description";
 function App() {
   const [prompt, setPrompt] = useState("");
   const [units, setUnits] = useState("metric");
-  const [weatherDataLoading, setWeatherDataLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  const [weatherDescriptLoading, setWeatherDescriptLoading] = useState(false);
 
   // Custom hook to handle API requests. Fires when prompt changes.
-  const { error, promptData, locationData, weatherData, weatherDescription } = useApiRequests(prompt);
+  const { error, promptData, locationData, weatherData, weatherDescription, isLoading } = useApiRequests(prompt);
 
   // Set error message if error is returned from API request.
   useEffect(() => {
     if (error) {
-      setErrorMsg(error);
-      setWeatherDataLoading(false);
+      setErrorMsg(error.message);
+    } else {
+      setErrorMsg("");
     }
-  }, [weatherData]);
+  }, [error]);
 
   useEffect(() => {
     if (promptData && promptData.units){
@@ -29,24 +28,9 @@ function App() {
     }
   }, [promptData])
 
-  // Set weatherDataLoading to false when weatherData is returned from API request.
-  useEffect(() => {
-    if (weatherData) {
-      setWeatherDataLoading(false);
-    }
-  }, [weatherData]);
-
-  useEffect(() => {
-    if (weatherDescription) {
-      setWeatherDescriptLoading(false);
-    }
-  }, [weatherDescription]);
-
   // Handle form submission. Set prompt to user input.
   const handleSubmit = (newPrompt) => {
     setErrorMsg("");
-    setWeatherDataLoading(true);
-    setWeatherDataLoading(true);
     setPrompt(newPrompt);
   };
 
@@ -56,26 +40,26 @@ function App() {
       <header className="header">
         <h2 className="page-subtitle">Current Weather</h2>
         <WeatherForm onSubmit={handleSubmit} />
-        {error && <p className="error">{errorMsg.message}</p>}
+        {errorMsg && <p className="error">{errorMsg}</p>}
         {weatherDescription ? (
-          <Description isLoading={weatherDescriptLoading}
+          <Description isLoading={isLoading}
             weatherDescription={weatherDescription} />
         ) : (
-          <Description isLoading={weatherDataLoading} />
+          <Description isLoading={isLoading} />
         )}
       </header>
       <main className="main-content">
         {weatherData.name && !errorMsg ? (
           <WeatherCard
-            isLoading={weatherDataLoading}
+            isLoading={isLoading}
             data={weatherData}
             units={units}
             country={promptData.country}
-            USstate={locationData[0].state}
+            USstate={locationData[0]?.state}
             setUnits={setUnits}
           />
         ) : (
-          <WeatherCard isLoading={weatherDataLoading} setUnits={setUnits} />
+          <WeatherCard isLoading={isLoading} setUnits={setUnits} />
         )}
       </main>
     </div>

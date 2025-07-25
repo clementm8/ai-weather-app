@@ -47,3 +47,9 @@
   font-size: 0.8rem;
   margin-top: 10px;
 }
+
+.rate-limit-note {
+  color: #ff6b35;
+  font-style: italic;
+  font-size: 0.75rem;
+}
