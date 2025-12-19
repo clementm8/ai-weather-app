@@ -1,7 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/api/openai/:path*",
+      "source": "/api/openai/(.*)",
       "destination": "/api/openai"
     }
   ]
