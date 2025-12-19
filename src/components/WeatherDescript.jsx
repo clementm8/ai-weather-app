@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 const WeatherDescript = async (prompt, WeatherData) => {
-  const url = `https://api.openai.com/v1/chat/completions`;
+  const url = `/api/openai/v1/chat/completions`;
   const model = "gpt-3.5-turbo-16k";
   
   console.log(`🌤️ Making weather description request with model: ${model}`);

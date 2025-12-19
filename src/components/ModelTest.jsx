@@ -6,7 +6,7 @@ const ModelTest = () => {
 
   const testModel = async (modelName) => {
     try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      const response = await fetch('/api/openai/v1/chat/completions', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${import.meta.env.VITE_OPENAI}`,

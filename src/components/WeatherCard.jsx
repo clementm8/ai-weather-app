@@ -109,16 +109,19 @@ const WeatherCard = ({
           </span>
         </div>
         <div className="weathercard__wind">
+          <div className="weathercard__wind-compass">
+            <div className="weathercard__wind-dir" style={windDirStyle}>
+              <span className="screen-reader-text">{data.wind.deg}°</span>
+            </div>
+          </div>
           <div className="weathercard__wind-speed">
+            <span className="weathercard__wind-label">Wind</span>
             <span className="speed">
               {speedTranslator(data.wind.speed, units).value.toFixed(1)}
             </span>
             <span className="windunit">
               {speedTranslator(data.wind.speed, units).unit}
             </span>
-          </div>
-          <div className="weathercard__wind-dir" style={windDirStyle}>
-            <span className="screen-reader-text">${data.wind.deg}</span>
           </div>
         </div>
         <button id="units" onClick={handleUnitChange}>

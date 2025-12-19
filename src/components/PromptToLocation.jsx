@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 const PromptToLocation = async (prompt) => {
-  const url = `https://api.openai.com/v1/chat/completions`;
+  const url = `/api/openai/v1/chat/completions`;
   const model = "gpt-3.5-turbo-16k";
   
   console.log(`🔍 Making location request with model: ${model}`);
