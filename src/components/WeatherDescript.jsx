@@ -22,7 +22,6 @@ const WeatherDescript = async (prompt, WeatherData) => {
   };
   const params = {
     headers: {
-      Authorization: `Bearer ${import.meta.env.VITE_OPENAI}`,
       "Content-Type": "application/json",
     },
     method: "POST",

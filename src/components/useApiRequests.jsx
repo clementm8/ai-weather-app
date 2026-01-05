@@ -99,17 +99,6 @@ const useApiRequests = (prompt) => {
       setIsLoading(true);
       setError(null);
 
-      // Check if API key is available
-      if (!import.meta.env.VITE_OPENAI) {
-        setError(new Error('OpenAI API key not found. Please check your .env file.'));
-        setIsLoading(false);
-        return;
-      }
-
-      // Debug: Check API key (only log first few characters for security)
-      const apiKey = import.meta.env.VITE_OPENAI;
-      console.log('API Key available:', apiKey ? `${apiKey.substring(0, 10)}...` : 'NOT FOUND');
-
       try {
         // Step 1: Get location from prompt using OpenAI
         const promptDataRes = await makeRateLimitedCall(() => 
