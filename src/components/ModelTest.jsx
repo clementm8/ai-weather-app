@@ -9,7 +9,6 @@ const ModelTest = () => {
       const response = await fetch('/api/openai/v1/chat/completions', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${import.meta.env.VITE_OPENAI}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
