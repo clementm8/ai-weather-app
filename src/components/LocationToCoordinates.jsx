@@ -1,15 +1,16 @@
 import PropTypes from "prop-types";
 
-// Fetch location data from OpenWeatherMap API.
+// Fetch location data through the same-origin weather API.
 const LocationToCoordinates = async (locationString) => {
   try {
     const response = await fetch(
-      `https://api.openweathermap.org/geo/1.0/direct?q=${locationString}&limit=1&APPID=${
-        import.meta.env.VITE_OWM
-      }`
+      `/api/weather?q=${encodeURIComponent(locationString)}`
     );
     const locationData = await response.json();
-    if (locationData.length === 0) {
+    if (!response.ok) {
+      throw new Error(locationData.error || "No location by that name. Try again.");
+    }
+    if (!Array.isArray(locationData) || locationData.length === 0) {
       throw new Error("No location by that name. Try again.");
     }
     return locationData;

@@ -1,18 +1,21 @@
 import PropTypes from "prop-types";
 
-// Fetch weather data from OpenWeatherMap API.
+// Fetch weather data through the same-origin weather API.
 const WeatherData = async (locationData) => {
   try {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${
-        locationData[0].lat
-      }&lon=${locationData[0].lon}&APPID=${import.meta.env.VITE_OWM}`
+      `/api/weather?lat=${encodeURIComponent(locationData[0].lat)}&lon=${encodeURIComponent(locationData[0].lon)}`
     );
     const weatherData = await response.json();
+    if (!response.ok) {
+      throw new Error(weatherData.error || "Unable to fetch weather data.");
+    }
     return weatherData;
   } catch (error) {
     console.error("Error:", error);
-    return await Promise.reject("Unable to fetch weather data.");
+    return await Promise.reject(
+      error instanceof Error ? error : new Error("Unable to fetch weather data.")
+    );
   }
 };
 
